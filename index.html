@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome CDN  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="main.css">
+
+    <title>ActiveAlly</title>
+</head>
+<style>
+    
+</style>
+<body>
+    <!-- Further code here -->
+    <nav id="navbar" class="navbar"><a href="#"></a></nav>
+
+    <div class="container">
+        <!--=============== NAVIGATION MENU ===============-->
+
+        <div class="menu">
+            <a href="#welcome-section" class="menu-icon fas fa-home"></a>
+            <a href="#about" class="menu-icon fas fa-user"></a>
+            <!-- <a href="#projects" class="menu-icon fas fa-code"></a> 
+        <a href="#experience" class="menu-icon fas fa-briefcase"></a> -->
+
+            <a href="#contact" class="menu-icon fas fa-envelope"></a>
+
+        </div>
+
+        <!--=============== MAIN "WINDOW" ===============-->
+
+        <div class="portfolio">
+            <!--=============== HEADER SECTION ===============-->
+
+            <section class="header">
+                <img class="header-img" src="" alt="" />
+                <h1>ActiveAlly</h1>
+                <h2>Your partner in fitness success</h2>
+                <!-- <div class="socials">
+                <a href="#" target="_blank" class="fab fa-linkedin-in" id="profile-link"></a>
+                <a href="#" target="_blank" class="fab fa-github"></a>
+                <a href="#" target="_blank" class="fab fa-codepen"></a>
+            </div> -->
+                <!-- Include the Google Sign-In library -->
+                <br>
+                <script src="https://apis.google.com/js/platform.js" async defer></script>
+                <!-- Client ID for your Google Sign-In project -->
+                <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+                </head>
+
+                <body>
+                    <!-- Google Sign-In button -->
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </section>
+
+            <!--=============== CONTENT SECTION ===============-->
+
+            <div class="content">
+                <!--=============== HOME ===============-->
+
+                <section class="content-card home" id="welcome-section">
+                    <h2>Welcome to ActiveAlly</h2>
+                    <h3>Your partner in fitness success.</h3>
+                    <br>
+                    <h3>Our journey began with a simple vision: to create a supportive and inclusive community where
+                        fitness enthusiasts of all levels can come together to pursue their wellness goals.
+                    </h3>
+                </section>
+
+                <!--=============== ABOUT ME ===============-->
+
+                <section class="content-card about" id="about">
+                    <h1>About</h1>
+                    <div class="about-item about-me">
+                        <p>Welcome to Active Ally! We're passionate about empowering individuals to lead healthier,
+                            happier lives.
+
+
+                            At Active Ally, we offer a range of resources and support to help you on your fitness
+                            journey.
+                            From personalized workout routines and nutrition tips to inspiring success stories and
+                            community challenges
+                            , we're here to guide and support you every step of the way.
+
+                            Whether you're a seasoned gym-goer or just starting your fitness journey, you'll find a
+                            welcoming and supportive home here at Active Ally.
+
+                            Join us as we embark on a journey to transform lives, one workout at a time</p>
+                    </div>
+                    <div class="col-6">
+                        <div class="about-item skills">
+                            <h1>What's in it for you ???</h1>
+                            <span class="skill">Healthy lifestyle</span>
+                            <span class="skill">Fitness at your Doorstep</span>
+                            <span class="skill">Nutrition tips</span>
+                            <span class="skill">Workout routines</span>
+                            <span class="skill">Inclusive Community</span>
+                            <span class="skill">Recognize your health status</span>
+
+                        </div>
+
+                        
+                    </div>
+                </section>
+
+                
+
+
+                <!-- contact -->
+                <section class="content-card home" id="contact">
+                    <h3>Got questions, feedback, or just want to say hello? We'd love to hear from you!</h3>
+                    <p>Reach out to us through any of the channels below and let's connect.</p>
+                    <h3>Contact Us</h3>
+                    <br>
+                    <ul>
+                        <li><strong>Email:</strong> <a href="mailto:example@example.com">example@example.com</a></li>
+                        <br>
+                        <li><strong>Phone:</strong> +1234567890</li>
+                        <br>
+                    </ul>
+                    <h3>Follow us on social media:</h3>
+                    <br>
+                    <ul>
+                        <li><strong>Instagram:</strong> <a
+                                href="https://www.instagram.com/your_instagram_id">@your_instagram_id</a></li>
+                        <br>
+                        <li><strong>Twitter:</strong> <a href="https://twitter.com/your_twitter_id">@your_twitter_id</a>
+                        </li>
+                    </ul>
+                </section>
+
+                
+</body>
+<script>
+
+    const loginbtn = document.querySelector('.g-signin2')
+    loginbtn.addEventListener('click',(e) => {
+        e.preventDefault()
+
+        window.location.href = 'bmi.html'
+
+    })
+
+    function authenticateWithGoogle() {
+            // Redirect the user to the Google authentication route
+            window.location.href = 'http://localhost:3000/auth/google';
+        }
+</script>
+</html>

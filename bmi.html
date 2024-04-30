@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <base href="/public/">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <!-- <link rel="stylesheet" href="HackFit.css"> -->
+  </head>
+  <style>
+    /* header{
+    background-color: aqua;
+} */
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-image: url(images/asthetic.jpeg);
+        background-size : cover;
+        background-repeat: no-repeat;
+        
+    }
+
+    /* Remove box format and make inputs appear as a single straight line */
+    input,
+    textarea,
+    select {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: rgba(255, 255, 255, 0.5);
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 5px 0;
+    }
+
+    /* Optional: Add styles for better appearance */
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #007bff;
+      /* Change color on focus if desired */
+      outline: none;
+      /* Remove default outline */
+    }
+
+    .profile-container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    #DisplyaText {
+      color: whitesmoke;
+    }
+
+    h1 {
+      text-align: center;
+      color:black;
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: black;
+      color: #fff;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      
+    }
+
+    #bmi-result {
+      margin-top: 20px;
+    }
+
+    #suggestions {
+      margin-top: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #buttondesign {
+      width: 250px;
+      margin-left: 20%;
+    }
+
+    #save-button
+    {
+        width:100px;
+        margin-top : 5%;
+        margin-right: 30%;
+        margin-left:47%;
+
+    }
+  </style>
+
+  <body>
+    <div class="profile-container">
+      <header>
+        <h1 id="DisplyaText" style="color:black;">User Profile</h1>
+      </header>
+      <form id="profile-form" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" autocomplete="off" required />
+
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          autocomplete="off"
+          required
+        />
+
+        <label for="age">Age:</label>
+        <input
+          type="number"
+          id="age"
+          name="age"
+          autocomplete="off"
+          min="0"
+          required
+        />
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+
+        <label for="height">Height (cm):</label>
+        <input
+          type="number"
+          id="height"
+          name="height"
+          autocomplete="off"
+          min="0"
+          required
+        />
+
+        <label for="weight">Weight (kg):</label>
+        <input
+          type="number"
+          id="weight"
+          name="weight"
+          autocomplete="off"
+          min="0"
+          required
+        />
+
+        <!-- <label for="diet">Diet Preference:</label>
+            <input type="radio" id="veg" name="diet" value="vegetarian" checked>
+            <label for="veg">Vegetarian</label>
+            <input type="radio" id="nonveg" name="diet" value="non-vegetarian">
+            <label for="nonveg">Non-Vegetarian</label> -->
+
+        <br />
+
+        <button type="submit">Calculate BMI</button>
+         <button id="save-button" type="button">Save</button>
+      </form>
+      <div id="bmi-result" class="hidden"></div>
+      <div id="suggestions" class="hidden">
+        <h2></h2>
+        <div id="exercise-suggestion"></div>
+        
+      </div>
+    </div>
+   
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const profileForm = document.getElementById("profile-form");
+        const bmiResult = document.getElementById("bmi-result");
+        const suggestions = document.getElementById("suggestions");
+        const exerciseSuggestionElement = document.getElementById(
+          "exercise-suggestion"
+        );
+        const dietSuggestionElement =
+          document.getElementById("diet-suggestion");
+
+        profileForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          calculateBMI();
+        });
+
+        function calculateBMI() {
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const age = parseFloat(profileForm.age.value);
+          const gender = profileForm.gender.value;
+          const height = parseFloat(profileForm.height.value);
+          const weight = parseFloat(profileForm.weight.value);
+
+          const heightInMeter = height / 100;
+          const bmi = weight / (heightInMeter * heightInMeter);
+
+          let bmiCategory;
+          if (bmi < 18.5) {
+            bmiCategory = "Underweight";
+          } else if (bmi >= 18.5 && bmi < 24.9) {
+            bmiCategory = "Normal weight";
+          } else if (bmi >= 25 && bmi < 29.9) {
+            bmiCategory = "Overweight";
+          } else {
+            bmiCategory = "Obese";
+          }
+
+          bmiResult.innerHTML = `
+                <p><strong>BMI:</strong> ${bmi.toFixed(2)}</p>
+                <p><strong>BMI Category:</strong> ${bmiCategory}</p>
+                `;
+          bmiResult.classList.remove("hidden");
+
+          suggestions.classList.remove("hidden");
+          displaySuggestions(bmiCategory);
+        }
+
+        function displaySuggestions(bmiCategory) {
+          let exerciseSuggestion;
+          let dietSuggestion;
+
+          switch (bmiCategory) {
+            case "Underweight":
+              exerciseSuggestion =
+                "Consider strength training exercises to build muscle mass";
+              dietSuggestion =
+                "Increase your calorie intake with nutrient-dense foods like nuts, avocados, and whole grains.";
+              break;
+            case "Normal weight":
+              exerciseSuggestion =
+                "Maintain your current level of physical activity for overall health.";
+              dietSuggestion =
+                "Maintain a balanced diet with a variety of fruits, vegetables, lean proteins, and whole grains.";
+              break;
+            case "Overweight":
+              exerciseSuggestion =
+                "Incorporate cardiovascular exercises like walking, cycling, or swimming.";
+              dietSuggestion =
+                "Focus on portion control and reduce intake of processed foods and sugary drinks.";
+              break;
+            case "Obese":
+              exerciseSuggestion =
+                "Start with low-impact exercises like walking or water aerobics.";
+              dietSuggestion =
+                "Consult a healthcare professional for personalized dietary recommendations and consider portion control.";
+              break;
+            default:
+              exerciseSuggestion = "No suggestions available.";
+              dietSuggestion = "No suggestions available.";
+              break;
+          }
+
+          exerciseSuggestionElement.textContent = exerciseSuggestion;
+          dietSuggestionElement.textContent = dietSuggestion;
+        }
+      });
+
+      const saveButton = document.getElementById("save-button");
+      saveButton.addEventListener("click", function () {
+        // Get the form fields
+        const name = document.getElementById("name").value.trim(); // Assuming you have an input field with id="name"
+        const email = document.getElementById("email").value.trim(); // Assuming you have an input field with id="email"
+        const age = parseFloat(document.getElementById("age").value);
+        const gender = document.getElementById("gender").value;
+        const height = parseFloat(document.getElementById("height").value);
+        const weight = parseFloat(document.getElementById("weight").value);
+        const bmi = parseFloat(
+          document.getElementById("bmi-result").textContent.split(":")[1]
+        );
+
+        // Provide default values if name or email is empty
+        const defaultName = "Unknown";
+        const defaultEmail = "unknown@example.com";
+
+        // Send a request to the server to save the user data
+        fetch("/save-user-data", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: name || defaultName,
+            email: email || defaultEmail,
+            age,
+            gender,
+            height,
+            weight,
+            bmi,
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Error saving user data");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("User data saved successfully");
+            // Show a success message or redirect the user to another page
+          })
+          .catch((error) => {
+            console.error("Error saving user data:", error);
+            // Show an error message to the user
+          });
+
+          window.location.href = 'dashboard.html'
+        
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitness Website</title>
+    <link rel="stylesheet" href="userhomepage1.css" />
+  </head>
+  <style>
+    body,
+    ul {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: hsl(
+        0,
+        14%,
+        93%
+      ); /* Dark background color for the header */
+      padding: 20px 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between; /* Align navigation items to the left */
+      align-items: center; /* Center items vertically */
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline-block; /* Display navigation items in a line */
+      margin-right: 20px;
+    }
+
+    nav ul li:last-child {
+      margin-right: 0; /* Remove margin from the last navigation item */
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 10px 20px;
+      color: hsl(0, 0%, 2%);
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: #555; /* Darker background color on hover */
+    }
+
+    #hero {
+      background-image: url(images/dashboard.jpeg); /* Replace 'fitness-bg.jpg' with your background image */
+      background-size: 70 50;
+      background-position: center;
+      color: hsl(0, 0%, 97%);
+      text-align: left;
+      text-shadow: 1px 1px;
+      padding: 200px 0;
+    }
+
+    #hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    #hero p {
+      font-size: 18px;
+    }
+
+    .section {
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    /* #featured-programs{
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 100%;
+  } */
+    .section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .section p {
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .testimonial {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .testimonial p {
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: hwb(0 96% 2%);
+      color: hsl(0, 0%, 1%);
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    footer ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    footer ul li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    footer ul li:last-child {
+      margin-right: 0;
+    }
+     body, ul {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: hsl(0, 14%, 93%);
+            padding: 20px 0;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            margin-bottom: 10px;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 10px 20px;
+            color: hsl(0, 0%, 2%);
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        #hero {
+            background-image: url(images/dashboard.jpeg);
+            background-size: cover;
+            background-position: center;
+            color: hsl(0, 0%, 97%);
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        #hero h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        #hero p {
+            font-size: 16px;
+        }
+
+        .section {
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .testimonial {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial p {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: hwb(0 96% 2%);
+            color: hsl(0, 0%, 1%);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        footer ul li:last-child {
+            margin-right: 0;
+        }
+
+        @media screen and (min-width: 768px) {
+            nav {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            nav ul {
+                flex-direction: row;
+            }
+
+            nav ul li {
+                margin-bottom: 0;
+                margin-right: 20px;
+            }
+        }
+    
+  </style>
+  <body>
+    <header>
+      <nav>
+        <div class="menu-icon"></div>
+        <ul>
+          <li><a href="dashboard.html">Home</a></li>
+          <li><a href="https://www.profilepage.com">Profile</a></li>
+          <li>
+              <p id='personalizedplans'>Personalized Plans</p>
+            
+          </li>
+          <li><p id ='nearbyfitness'> Near By Fitness Center </p></li>
+
+          
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><p id="contact">Contact</p></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <h1>Welcome to Fitness Website</h1>
+      <p style="color: black; font-weight: 300">
+        <b>Your ultimate destination for home fitness training.</b>
+      </p>
+    </section>
+
+<section>
+   -->
+    <footer>
+      <p>Follow us on social media:</p>
+      <ul>
+        <li>Facebook</li>
+        <li>Instagram</li>
+        <li>Twitter</li>
+      </ul>
+    </footer>
+  </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Use Fetch API to make an asynchronous request
+      fetch("/save-user-data")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.text();
+        })
+        .then((redirectLink) => {
+          // Redirect after getting the link from the response
+          window.location.href = redirectLink;
+        })
+        .catch((error) => {
+          console.error("Fetch error:", error);
+        });
+    });
+
+
+    const personalizedplans = document.getElementById('personalizedplans')
+    personalizedplans.style = 'cursor:pointer;'
+    personalizedplans.addEventListener('click',(e) => {
+      e.preventDefault();
+
+      window.location.href = 'question.html'
+    })
+
+    const nearby_fitness = document.getElementById('nearbyfitness')
+
+    nearby_fitness.style ='cursor:pointer;'
+
+    nearby_fitness.addEventListener('click',(e) => {
+      e.preventDefault()
+
+      window.location.href = 'map.html'
+    })
+
+    const contact = document.getElementById('contact')
+    contact.style = 'cursor:pointer;'
+    contact.addEventListener('click',(e) => {
+      e.preventDefault()
+
+      window.location.href = 'contactus.html'
+    })
+  </script>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Fitness Plan & YouTube Video Fetcher</title>
+    <style>
+
+
+/* .container{
+    background-image: url(sem4_MNP/800w-S_4-_kpzunc.webp);
+} */
+
+        .question {
+    margin-bottom: 20px;
+}
+
+body{
+    background-image: url(images/asthetic.jpeg);
+    background-size: cover;
+}
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#headerr{
+    background-color: black;
+    color: #ccc;
+    padding-top: 30px;
+  padding-right: 180px;
+  padding-bottom: 30px;
+  padding-left: 180px;
+ 
+}
+
+header h1{
+    margin: 0;
+}
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#suggestions {
+    margin-top: 20px;
+}
+
+#exercise-plan,
+#diet-plan {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+     padding: 20px; 
+
+    background-image: url(/images/asthetic.jpeg);
+    background-size: cover; /* Adjust the background size as needed */
+    background-position: center; /* Adjust the background position as needed */
+   
+}
+
+    
+    
+    
+
+
+.hidden {
+    display: none;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header><h1 id="headerr">Personalized Fitness Plan</h1></header>
+        <br>
+        <br>
+        <form id="fitness-form">
+            <div class="question">
+              <h2>  <label for="goal">What is your primary fitness goal?</label></h2>
+                <select id="goal" name="goal">
+                    <option value="build-muscle">Build Muscle</option>
+                    <option value="get-leaner">Get Leaner</option>
+                    <option value="gain-strength">Gain Strength</option>
+                </select>
+            </div>
+            <div class="question">
+              <h2>  <label for="equipment">What equipment do you have at your house?</label></h2>
+                <select id="equipment" name="equipment">
+                    <option value="dumbbells">Dumbbells</option>
+                    <option value="bands">Resistance Bands</option>
+                    <option value="cycle">Stationary Cycle</option>
+                </select>
+            </div>
+            <div class="question">
+              <h2>  <label for="exercise-level">How do you define your training exercise level?</label></h2>
+                <select id="exercise-level" name="exercise-level">
+                    <option value="bad">Bad</option>
+                    <option value="good">Good</option>
+                    <option value="best">Best</option>
+                </select>
+            </div>
+            <button type="submit">Get Personalized Plan</button>
+        </form>
+        <div id="suggestions" class="hidden">
+            <h2>Personalized Suggestions</h2>
+            <div id="exercise-plan"></div>
+            <div id="diet-plan"></div>
+        </div>
+
+        <h1>YouTube Video Fetcher</h1>
+        <div id="video-container"></div>
+    </div>
+
+    <script>
+        // Add your JavaScript code here
+        document.addEventListener('DOMContentLoaded', function() {
+            const fitnessForm = document.getElementById('fitness-form');
+            const suggestions = document.getElementById('suggestions');
+            const exercisePlan = document.getElementById('exercise-plan');
+            const dietPlan = document.getElementById('diet-plan');
+
+            fitnessForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                generatePlan();
+            });
+
+            function generatePlan() {
+                const goal = fitnessForm.goal.value;
+                const equipment = fitnessForm.equipment.value;
+                const exerciseLevel = fitnessForm['exercise-level'].value;
+
+                // Based on user selections, generate personalized exercise and diet plans
+                let exerciseSuggestion, dietSuggestion;
+
+                switch (goal) {
+                    case 'build-muscle':
+                        exerciseSuggestion = 'Focus on compound exercises like squats, deadlifts, and bench presses with heavy weights.';
+                        break;
+                    case 'get-leaner':
+                        exerciseSuggestion = 'Incorporate high-intensity interval training (HIIT) and cardio exercises like running or cycling.';
+                        break;
+                    case 'gain-strength':
+                        exerciseSuggestion = 'Emphasize strength training exercises with progressive overload, focusing on increasing weight and intensity over time.';
+                        break;
+                    default:
+                        exerciseSuggestion = 'No exercise plan available.';
+                        break;
+                }
+
+                switch (equipment) {
+                    case 'build-muscle':
+                        dietSuggestion = 'Include protein-rich foods like lean meats, eggs, and legumes in your diet.';
+                        break;
+                    case 'get-leaner':
+                        dietSuggestion = 'Focus on whole foods and include plenty of fruits, vegetables, and lean proteins in your diet.';
+                        break;
+                    case 'gain-strength':
+                        dietSuggestion = 'Stay hydrated and fuel your body with complex carbohydrates for energy during workouts.';
+                        break;
+                    default:
+                        dietSuggestion = 'No diet plan available.';
+                        break;
+                }
+
+                if (exerciseLevel === 'best') {
+                    exerciseSuggestion += ' Also, consider hiring a personal trainer to create a customized workout plan for you.';
+                }
+
+                // Display personalized exercise and diet plans
+                exercisePlan.textContent = 'Exercise Plan: ' + exerciseSuggestion;
+                dietPlan.textContent = 'Diet Plan: ' + dietSuggestion;
+                suggestions.classList.remove('hidden');
+
+                // Fetch YouTube videos based on user's fitness goal
+                fetchVideos(goal);
+            }
+
+            function fetchVideos(goal) {
+    const apiKey = 'AIzaSyB5TriIoKGFsevFz1kGgua0TFmg0qvRRsc'; // Replace this with your actual YouTube API key
+    const searchQuery = goal === 'build-muscle' ? 'muscle workout' :
+                        goal === 'get-leaner' ? 'fat burning workout' :
+                        goal === 'gain-strength' ? 'strength training workout' : 'workout';
+
+    fetch(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&q=${searchQuery}&part=snippet&maxResults=3&type=video`)
+        .then(response => response.json())
+        .then(data => {
+            const videos = data.items.map(item => {
+                return {
+                    title: item.snippet.title,
+                    videoId: item.id.videoId,
+                    thumbnail: item.snippet.thumbnails.default.url
+                };
+            });
+
+            renderVideos(videos);
+        })
+        .catch(error => {
+            console.error('Error fetching videos:', error);
+        });
+}
+
+            function renderVideos(videos) {
+                const videoContainer = document.getElementById('video-container');
+                
+                videoContainer.innerHTML = '';
+
+                videos.forEach(video => {
+                    const videoElement = document.createElement('div');
+                    videoElement.innerHTML = `
+                        <h2>${video.title}</h2>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/${video.videoId}" frameborder="0" allowfullscreen></iframe>
+                    `;
+                    videoContainer.appendChild(videoElement);
+                });
+            }
+        });
+    </script>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const fitnessForm = document.getElementById('fitness-form');
+    const suggestions = document.getElementById('suggestions');
+    const exercisePlan = document.getElementById('exercise-plan');
+    const dietPlan = document.getElementById('diet-plan');
+
+    fitnessForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        generatePlan();
+    });
+
+    function generatePlan() {
+        const goal = fitnessForm.goal.value;
+        const equipment = fitnessForm.equipment.value;
+        const exerciseLevel = fitnessForm['exercise-level'].value;
+
+        // Based on user selections, generate personalized exercise and diet plans
+        let exerciseSuggestion, dietSuggestion;
+
+        switch (goal) {
+            case 'build-muscle':
+                exerciseSuggestion = 'Focus on compound exercises like squats, deadlifts, and bench presses with heavy weights.';
+                break;
+            case 'get-leaner':
+                exerciseSuggestion = 'Incorporate high-intensity interval training (HIIT) and cardio exercises like running or cycling.';
+                break;
+            case 'gain-strength':
+                exerciseSuggestion = 'Emphasize strength training exercises with progressive overload, focusing on increasing weight and intensity over time.';
+                break;
+            default:
+                exerciseSuggestion = 'No exercise plan available.';
+                break;
+        }
+
+        switch (equipment) {
+            case 'dumbbells':
+                dietSuggestion = 'Include protein-rich foods like lean meats, eggs, and legumes in your diet.';
+                break;
+            case 'bands':
+                dietSuggestion = 'Focus on whole foods and include plenty of fruits, vegetables, and lean proteins in your diet.';
+                break;
+            case 'cycle':
+                dietSuggestion = 'Stay hydrated and fuel your body with complex carbohydrates for energy during workouts.';
+                break;
+            default:
+                dietSuggestion = 'No diet plan available.';
+                break;
+        }
+
+        if (exerciseLevel === 'best') {
+            exerciseSuggestion += ' Also, consider hiring a personal trainer to create a customized workout plan for you.';
+        }
+
+        // Display personalized exercise and diet plans
+        exercisePlan.textContent = 'Exercise Plan: ' + exerciseSuggestion;
+        dietPlan.textContent = 'Diet Plan: ' + dietSuggestion;
+        suggestions.classList.remove('hidden');
+    }
+});
+</script>
+</html>
